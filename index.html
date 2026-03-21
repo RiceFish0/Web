@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<title>CPE 等候頁面</title>
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div class="container">
+    <h1>系統忙碌中</h1>
+
+    <p>
+        目前報名人數過多，我們正在為你處理中<br>
+        你的資料可能已成功送出，請勿重複提交
+    </p>
+
+    <div class="status">
+        排隊人數：<span id="queue">120</span> 人<br>
+        預估時間：<span id="time">2</span> 分鐘
+    </div>
+
+    <div class="progress-bar">
+        <div class="progress"></div>
+    </div>
+
+    <p>系統每 5 秒自動重試</p>
+
+    <button onclick="retry()">重新整理</button>
+</div>
+
+<script src="script.js"></script>
+
+</body>
+</html>

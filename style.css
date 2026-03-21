@@ -61,38 +61,95 @@ h1 { color: var(--accent-color); }
     100% { width: 0%; }
 }
 
-/* 膠捲特效 */
-.film-container {
+/* 唱片容器：初始在左側外面 */
+.record-container {
     position: fixed;
-    left: -320px;
-    top: 0; bottom: 0;
-    width: 280px;
-    background: var(--film-bg);
+    left: -300px;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: left 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    z-index: 5;
+}
+
+/* 顯示唱片 */
+.record-container.show {
+    left: 170px;
+}
+
+/* 黑膠唱片本體 */
+.record {
+    width: 220px;
+    height: 220px;
+    background: radial-gradient(circle, #333 10%, #111 11%, #333 12%, #111 13%, #333 14%, #000 15%);
+    /* 模擬黑膠唱片的溝槽紋理 */
+    background-image: repeating-radial-gradient(
+        circle,
+        #222,
+        #222 2px,
+        #000 4px,
+        #000 5px
+    );
+    border-radius: 50%;
+    border: 5px solid #333;
     display: flex;
     justify-content: center;
     align-items: center;
-    transition: left 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-    z-index: 5;
-    box-shadow: 5px 0 25px rgba(0,0,0,0.5);
+    box-shadow: 0 0 20px rgba(0,0,0,0.5);
 }
 
-.film-container.show { left: 20px; }
+/* 唱片中心標籤 */
+.record-center {
+    width: 70px;
+    height: 70px;
+    background: #ff6b6b; /* 或是周杰倫專輯常見的顏色 */
+    border-radius: 50%;
+    border: 3px solid #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
 
-.film-content {
-    color: #fff;
-    writing-mode: vertical-rl;
-    font-size: 24px;
+/* 中心點的小洞 */
+.record-center::after {
+    content: "";
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    background: white;
+    border-radius: 50%;
+}
+
+.record-text {
+    font-size: 12px;
+    color: white;
     font-weight: bold;
-    letter-spacing: 10px;
-    animation: scrollText 4s linear infinite;
+    font-family: Arial;
 }
 
-@keyframes scrollText {
-    0% { transform: translateY(100%); opacity: 0; }
-    50% { opacity: 1; }
-    100% { transform: translateY(-100%); opacity: 0; }
+/* 旋轉動畫 */
+.spinning {
+    animation: rotateRecord 4s linear infinite;
 }
 
+@keyframes rotateRecord {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+/* 歌名樣式 */
+.song-title {
+    margin-top: 20px;
+    color: white;
+    background: rgba(0,0,0,0.6);
+    padding: 5px 15px;
+    border-radius: 20px;
+    font-size: 14px;
+    letter-spacing: 2px;
+}
 /* 怕洽狗與跳舞動畫 */
 .pochacco {
     position: fixed;

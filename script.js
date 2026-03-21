@@ -29,23 +29,27 @@ function retry() {
 function toggleMagic() {
     const audio = document.getElementById('bgm');
     const pochacco = document.getElementById('pochacco');
-    const film = document.getElementById('film');
+    const recordContainer = document.getElementById('record-player'); // 修改這行
+    const recordDisk = document.querySelector('.record'); // 唱片本體
 
     if (!isMagicActive) {
-        // 播放音樂並啟動動畫
-        audio.play().catch(e => console.log("音樂播放受限"));
+        // 播放音樂
+        audio.play().catch(e => console.log("播放受限"));
+        
+        // 啟動動畫
         pochacco.classList.add('dancing');
-        film.classList.add('show');
+        recordContainer.classList.add('show');
+        recordDisk.classList.add('spinning'); // 讓唱片轉動
+        
         isMagicActive = true;
         
-        // 彩蛋：讓排隊人數減少快一點
-        queue = Math.max(0, queue - 20);
-        updateQueue();
     } else {
         // 停止音樂與動畫
         audio.pause();
         pochacco.classList.remove('dancing');
-        film.classList.remove('show');
+        recordContainer.classList.remove('show');
+        recordDisk.classList.remove('spinning');
+        
         isMagicActive = false;
     }
 }

@@ -29,11 +29,14 @@
         <button onclick="retry()">重新整理</button>
     </div>
 
-    <div id="film" class="film-container">
-        <div class="film-content">
-            🎵 🕒 給我一首歌的時間... 🎵
+    <div id="record-player" class="record-container">
+    <div class="record">
+        <div class="record-center">
+            <span class="record-text">JAY</span>
         </div>
     </div>
+    <div class="song-title">給我一首歌的時間</div>
+</div>
 
     <img id="pochacco" class="pochacco" 
          src="https://upload.wikimedia.org/wikipedia/zh/e/ea/Pochacco_character.png"
@@ -41,7 +44,8 @@
          title="點我聽音樂！">
 
     <audio id="bgm" loop>
-        <source src="your-song-file.mp3" type="audio/mpeg">
+        <source src="jay.mp3" type="audio/mpeg">
+        您的瀏覽器不支援音樂播放。
     </audio>
 
     <script src="script.js"></script>

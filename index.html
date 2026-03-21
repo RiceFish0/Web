@@ -1,56 +1,49 @@
 <!DOCTYPE html>
 <html lang="zh-TW">
 <head>
-<meta charset="UTF-8">
-<title>CPE 等候頁面</title>
-<link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CPE 等候頁面 - 怕洽狗版</title>
+    <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
 
-<!-- 背景模糊 -->
-<div class="background"></div>
+    <div class="background"></div>
 
-<!-- 主卡片 -->
-<div class="card">
-    <h1>🚧 系統忙碌中</h1>
+    <div id="notification">🎉 系統恢復！即將進入報名頁</div>
 
-    <p>
-        報名人數過多，我們正在為你處理中<br>
-        請不要重複提交 🙏
-    </p>
+    <div class="card">
+        <h1>🚧 系統忙碌中</h1>
+        <p>報名人數過多，我們正在為你處理中<br>請不要重複提交 🙏</p>
 
-    <div class="info">
-        👥 排隊人數：<span id="queue">132</span><br>
-        ⏱ 預估時間：<span id="time">2</span> 分鐘
+        <div class="info">
+            👥 排隊人數：<span id="queue">132</span><br>
+            ⏱ 預估時間：<span id="time">2</span> 分鐘
+        </div>
+
+        <div class="progress-bar">
+            <div class="progress"></div>
+        </div>
+
+        <p class="hint">系統每 5 秒自動重試</p>
+        <button onclick="retry()">重新整理</button>
     </div>
 
-    <div class="progress-bar">
-        <div class="progress"></div>
+    <div id="film" class="film-container">
+        <div class="film-content">
+            🎵 🕒 給我一首歌的時間... 🎵
+        </div>
     </div>
 
-    <p class="hint">系統每 5 秒自動重試</p>
+    <img id="pochacco" class="pochacco" 
+         src="https://upload.wikimedia.org/wikipedia/zh/e/ea/Pochacco_character.png"
+         onclick="toggleMagic()"
+         title="點我聽音樂！">
 
-    <button onclick="retry()">重新整理</button>
-</div>
+    <audio id="bgm" loop>
+        <source src="your-song-file.mp3" type="audio/mpeg">
+    </audio>
 
-<div id="film-reel" class="film-container">
-    <div class="film-strip">
-        <span>♫ 🕒 給我一首歌的時間... ♫</span>
-    </div>
-</div>
-
-<img id="dance-pochacco" class="pochacco" 
-     src="https://upload.wikimedia.org/wikipedia/zh/e/ea/Pochacco_character.png" 
-     onclick="startTheShow()">
-
-<audio id="jay-song" src="https://youtu.be/wt0RKW3aC84?si=DyeS9d1xa8DKBbHJ"></audio>
-
-<!-- 怕洽狗 
-<img class="pochacco" 
-src="https://upload.wikimedia.org/wikipedia/zh/e/ea/Pochacco_character.png">
--->
-<script src="script.js"></script>
-
+    <script src="script.js"></script>
 </body>
 </html>

@@ -1,50 +1,49 @@
-body {
-    margin: 0;
-    font-family: "Arial";
-    overflow: hidden;
+:root {
+    --primary-color: #4dabf7;
+    --secondary-color: #339af0;
+    --accent-color: #ff6b6b;
+    --film-bg: #1a1a1a;
 }
 
-/* 背景 */
+body {
+    margin: 0;
+    font-family: "Microsoft JhengHei", "Arial", sans-serif;
+    overflow: hidden;
+    background-color: #f0f2f5;
+}
+
+/* 背景模糊圖層 */
 .background {
     position: fixed;
     width: 100%;
     height: 100%;
     background: url("https://images.unsplash.com/photo-1507525428034-b723cf961d3e") no-repeat center;
     background-size: cover;
-    filter: blur(8px) brightness(0.8);
+    filter: blur(8px) brightness(0.7);
+    z-index: -1;
 }
 
-/* 卡片 */
+/* 核心卡片樣式 */
 .card {
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    
     width: 350px;
-    padding: 30px;
-
-    background: rgba(255,255,255,0.9);
-    border-radius: 15px;
+    padding: 40px;
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 24px;
     text-align: center;
-
-    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+    z-index: 10;
 }
 
-h1 {
-    color: #ff6b6b;
-}
+h1 { color: var(--accent-color); }
 
-.info {
-    margin: 20px 0;
-    font-size: 18px;
-}
-
-/* 進度條 */
 .progress-bar {
     width: 100%;
-    height: 15px;
-    background: #ddd;
+    height: 12px;
+    background: #e9ecef;
     border-radius: 10px;
     overflow: hidden;
 }
@@ -52,84 +51,79 @@ h1 {
 .progress {
     height: 100%;
     width: 0%;
-    background: linear-gradient(90deg, #4dabf7, #74c0fc);
-    animation: loading 2s infinite;
+    background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+    animation: loading 3s infinite ease-in-out;
 }
 
 @keyframes loading {
-    0% {width: 0%;}
-    50% {width: 100%;}
-    100% {width: 0%;}
+    0% { width: 0%; }
+    50% { width: 100%; }
+    100% { width: 0%; }
 }
 
-button {
-    margin-top: 15px;
-    padding: 10px 20px;
-    border: none;
-    background: #4dabf7;
-    color: white;
-    border-radius: 8px;
-    cursor: pointer;
-}
-
-button:hover {
-    background: #339af0;
-}
-
-.hint {
-    font-size: 14px;
-    color: gray;
-}
-
-/* 怕洽狗 */
-.pochacco {
-    position: fixed;
-    right: 50px;
-    bottom: 50px;
-    width: 480px;
-}
-/* 膠捲容器樣式 */
+/* 膠捲特效 */
 .film-container {
     position: fixed;
-    left: -300px; /* 初始藏在左邊 */
-    top: 50%;
-    transform: translateY(-50%);
-    width: 250px;
-    height: 100px;
-    background: #222;
-    border-top: 5px dashed white;
-    border-bottom: 5px dashed white;
+    left: -320px;
+    top: 0; bottom: 0;
+    width: 280px;
+    background: var(--film-bg);
     display: flex;
+    justify-content: center;
     align-items: center;
-    transition: left 1s ease-in-out;
+    transition: left 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55);
     z-index: 5;
+    box-shadow: 5px 0 25px rgba(0,0,0,0.5);
 }
 
-/* 膠捲跑馬燈動畫 */
-.film-strip {
-    color: white;
-    white-space: nowrap;
-    font-size: 20px;
-    animation: filmScroll 5s linear infinite;
+.film-container.show { left: 20px; }
+
+.film-content {
+    color: #fff;
+    writing-mode: vertical-rl;
+    font-size: 24px;
+    font-weight: bold;
+    letter-spacing: 10px;
+    animation: scrollText 4s linear infinite;
 }
 
-@keyframes filmScroll {
-    from { transform: translateX(100%); }
-    to { transform: translateX(-100%); }
+@keyframes scrollText {
+    0% { transform: translateY(100%); opacity: 0; }
+    50% { opacity: 1; }
+    100% { transform: translateY(-100%); opacity: 0; }
 }
 
-/* 顯示膠捲 */
-.film-show {
-    left: 20px !important;
-}
-
-/* 帕恰狗跳舞動畫 */
-.dancing {
-    animation: pochaccoDance 0.5s infinite alternate ease-in-out;
+/* 怕洽狗與跳舞動畫 */
+.pochacco {
+    position: fixed;
+    right: 40px;
+    bottom: 40px;
+    width: 480px;
     cursor: pointer;
+    z-index: 20;
 }
 
-@keyframes pochaccoDance {
-    0% { transform: translateY(0) rotate(0deg) scale(1); }
-    100% { transform: translateY(-20px) rotate(10deg) scale(1.1); }
+.dancing {
+    animation: dance 0.6s infinite alternate cubic-bezier(0.45, 0.05, 0.55, 0.95);
 }
+
+@keyframes dance {
+    0% { transform: translateY(0) rotate(-5deg); }
+    100% { transform: translateY(-30px) rotate(10deg); }
+}
+
+/* 通知彈窗 */
+#notification {
+    position: fixed;
+    top: -100px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #40c057;
+    color: white;
+    padding: 15px 30px;
+    border-radius: 50px;
+    transition: top 0.5s;
+    z-index: 100;
+}
+
+#notification.active { top: 30px; }

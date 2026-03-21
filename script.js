@@ -1,41 +1,51 @@
 let queue = 132;
+let isMagicActive = false;
 
+// 自動更新排隊人數
 function updateQueue() {
-    queue -= Math.floor(Math.random() * 6);
+    if (queue <= 0) return;
 
+    queue -= Math.floor(Math.random() * 6);
     if (queue < 0) queue = 0;
 
     document.getElementById("queue").innerText = queue;
     document.getElementById("time").innerText = Math.ceil(queue / 60);
 
     if (queue === 0) {
-        alert("🎉 系統恢復！即將進入報名頁");
+        const notif = document.getElementById('notification');
+        notif.classList.add('active');
     }
 }
 
+// 每 5 秒執行一次
 setInterval(updateQueue, 5000);
 
+// 重新整理頁面
 function retry() {
     location.reload();
 }
 
-function startTheShow() {
-    const song = document.getElementById("jay-song");
-    const pochacco = document.getElementById("dance-pochacco");
-    const film = document.getElementById("film-reel");
+// 核心互動功能：怕洽狗與膠捲
+function toggleMagic() {
+    const audio = document.getElementById('bgm');
+    const pochacco = document.getElementById('pochacco');
+    const film = document.getElementById('film');
 
-    // 播放音樂
-    song.play().catch(e => {
-        console.log("瀏覽器阻擋自動播放，請確保已有互動。");
-    });
-
-    // 觸發跳舞動畫
-    pochacco.classList.add("dancing");
-
-    // 讓膠捲滑入
-    film.classList.add("film-show");
-
-    // 可以在這裡加一個彩蛋：排隊時間直接減半
-    queue = Math.floor(queue / 2);
-    updateQueue();
+    if (!isMagicActive) {
+        // 播放音樂並啟動動畫
+        audio.play().catch(e => console.log("音樂播放受限"));
+        pochacco.classList.add('dancing');
+        film.classList.add('show');
+        isMagicActive = true;
+        
+        // 彩蛋：讓排隊人數減少快一點
+        queue = Math.max(0, queue - 20);
+        updateQueue();
+    } else {
+        // 停止音樂與動畫
+        audio.pause();
+        pochacco.classList.remove('dancing');
+        film.classList.remove('show');
+        isMagicActive = false;
+    }
 }

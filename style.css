@@ -23,6 +23,12 @@ body {
     z-index: -1;
 }
 
+.brand {
+    font-size: 13px;
+    color: #888;
+    margin-bottom: 10px;
+}
+
 /* 核心卡片樣式 */
 .card {
     position: absolute;

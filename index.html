@@ -16,16 +16,22 @@
         <h1>🚧 系統忙碌中</h1>
         <p>報名人數過多，我們正在為你處理中<br>請不要重複提交 🙏</p>
 
-        <div class="info">
-            👥 排隊人數：<span id="queue">132</span><br>
-            ⏱ 預估時間：<span id="time">2</span> 分鐘
-        </div>
+        <div class="info-box">
+    <div>
+        <div class="label">排隊人數</div>
+        <div class="value" id="queue">120</div>
+    </div>
+    <div>
+        <div class="label">預估時間</div>
+        <div class="value" id="time">2</div>分鐘
+    </div>
+</div>
 
         <div class="progress-bar">
             <div class="progress"></div>
         </div>
 
-        <p class="hint">系統每 5 秒自動重試</p>
+        <p class="hint">🐶 怕洽狗幫你排隊中，請稍等一下～</p>
         <button onclick="retry()">重新整理</button>
     </div>
 

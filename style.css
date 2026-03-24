@@ -109,12 +109,13 @@ h1 {
     margin: 15px 0;
 }
 
+/* style.css 修改部分 */
 .progress {
     height: 100%;
-    width: 40%;
+    width: 0%; /* 初始設為 0 */
     background: linear-gradient(90deg, #4dabf7, #74c0fc);
     border-radius: 10px;
-    transition: width 0.5s;
+    transition: width 0.8s ease; /* 增加平滑動畫感 */
 }
 
 @keyframes loading {

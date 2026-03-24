@@ -4,7 +4,9 @@ let isMagicActive = false;
 // 自動更新排隊人數
 function updateQueue() {
     if (queue <= 0) return;
-
+    let total = 132; 
+    let progressPercent = ((total - queue) / total) * 100;
+    document.querySelector(".progress").style.width = progressPercent + "%";
     queue -= Math.floor(Math.random() * 6);
     if (queue < 0) queue = 0;
 

@@ -12,16 +12,22 @@ body {
     background-color: #f0f2f5;
 }
 
-/* 背景模糊圖層 */
-/*.background {
+/* 官方 Logo 樣式 */
+.header-logo {
     position: fixed;
-    width: 100%;
-    height: 100%;
-    background: url("https://images.unsplash.com/photo-1507525428034-b723cf961d3e") no-repeat center;
-    background-size: cover;
-    filter: blur(8px) brightness(0.7);
-    z-index: -1;
-}*/
+    top: 30px;
+    left: 40px;
+    z-index: 30;
+    display: flex;
+    align-items: center;
+    pointer-events: none;
+}
+
+.header-logo img {
+    height: 60px; /* 控制 Logo 大小，不要太大避免搶戲 */
+    filter: drop-shadow(0 4px 10px rgba(0,0,0,0.1)); /* 增加一點質感陰影 */
+    animation: fadeInLogo 1.5s ease-out;
+}
 .background {
     position: fixed;
     width: 100%;

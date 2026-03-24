@@ -12,9 +12,14 @@ function updateQueue() {
     document.getElementById("time").innerText = Math.ceil(queue / 60);
 
     if (queue === 0) {
-        const notif = document.getElementById('notification');
-        notif.classList.add('active');
-    }
+    const notif = document.getElementById('notification');
+    notif.classList.add('active');
+
+    // 🔥 3秒後跳轉
+    setTimeout(() => {
+        window.location.href = "https://cpe.mcu.edu.tw/cpe/";
+    }, 3000);
+}
 }
 
 // 每 5 秒執行一次
